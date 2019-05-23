@@ -1,0 +1,15 @@
+{
+  "name": "julio_cesar_challenge",
+  "version": "1.0.0",
+  "description": "Challenge (Codenation)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ricardo N. de Miranda",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.0",
+    "sha1": "^1.1.1"
+  }
+}
