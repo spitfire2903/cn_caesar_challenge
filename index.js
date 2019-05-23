@@ -40,8 +40,8 @@ decryptChar = (char, diff) => {
     const INDEX_LAST_CHAR = 122;
     const MAX_SIZE = 1 + (INDEX_LAST_CHAR - INDEX_FIRST_CHAR);
 
-    console.log(' > Char: '+char);
-    console.log(' > Diff: '+diff);
+    console.log(' > Char: ' + char);
+    console.log(' > Diff: ' + diff);
 
     if (!isCharacter(char)) {
         console.log(' > Char is not character');
@@ -49,28 +49,29 @@ decryptChar = (char, diff) => {
     }
 
     let charCode = char.charCodeAt(0);
-    console.log(' > Charcode: '+charCode);
+    console.log(' > Charcode: ' + charCode);
 
     let position = charCode - diff;
 
-    console.log(' > Possible position: '+position);
+    console.log(' > Possible position: ' + position);
 
     if (position < INDEX_FIRST_CHAR) {
         console.log(' > Position < FIRST_CHAR ');
 
         position = INDEX_FIRST_CHAR - position;
 
-        console.log(' > Diff above the FIRST_CHAR: '+position);
+        console.log(' > Diff above the FIRST_CHAR: ' + position);
 
         position = position % MAX_SIZE;
 
-        console.log(' > Position to sub from LAST_CHAR: '+position);
+        console.log(' > Position to sub from LAST_CHAR: ' + position);
 
-        position = INDEX_LAST_CHAR - position;
+        position = (INDEX_LAST_CHAR - position) + 1;
 
-        console.log(' > Final position: '+position);
+        console.log(' > Final position: ' + position);
     }
 
+    console.log(' > New Char: ' + String.fromCharCode(position));
     console.log(' ');
 
     return String.fromCharCode(position);
