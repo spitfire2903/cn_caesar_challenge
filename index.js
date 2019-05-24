@@ -40,39 +40,18 @@ decryptChar = (char, diff) => {
     const INDEX_LAST_CHAR = 122;
     const MAX_SIZE = 1 + (INDEX_LAST_CHAR - INDEX_FIRST_CHAR);
 
-    console.log(' > Char: ' + char);
-    console.log(' > Diff: ' + diff);
-
     if (!isCharacter(char)) {
-        console.log(' > Char is not character');
         return char;
     }
 
     let charCode = char.charCodeAt(0);
-    console.log(' > Charcode: ' + charCode);
-
     let position = charCode - diff;
 
-    console.log(' > Possible position: ' + position);
-
     if (position < INDEX_FIRST_CHAR) {
-        console.log(' > Position < FIRST_CHAR ');
-
         position = INDEX_FIRST_CHAR - position;
-
-        console.log(' > Diff above the FIRST_CHAR: ' + position);
-
         position = position % MAX_SIZE;
-
-        console.log(' > Position to sub from LAST_CHAR: ' + position);
-
         position = (INDEX_LAST_CHAR - position) + 1;
-
-        console.log(' > Final position: ' + position);
     }
-
-    console.log(' > New Char: ' + String.fromCharCode(position));
-    console.log(' ');
 
     return String.fromCharCode(position);
 }
@@ -90,16 +69,14 @@ sendDecryptedText = async (text, file) => {
 
         request.post(URL_SUBMIT_SOLUTION, options, (error, response, body) => {
             if (error) {
-                console.error(error);
                 rej(error);
             }
 
-            console.info(body);
             res(body);
         });
     });
 
-    return JSON.parse(jsonText);
+    return JSON.parse(score);
 }
 
 writeData = (data) => {
@@ -119,7 +96,9 @@ main = async () => {
 
     writeData(JSON.stringify(cryptoJson));
 
-    // let score = await sendDecryptedText(decryptedText, fs.createReadStream(FILENAME));
+    let score = await sendDecryptedText(decryptedText, fs.createReadStream(FILENAME));
+
+    console.log(' > Score: ' + score.score);
 }
 
 main()
